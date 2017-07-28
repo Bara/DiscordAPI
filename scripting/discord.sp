@@ -121,6 +121,7 @@ bool GetChannelWebHook(const char[] channel, char[] webhook, int length)
 	if (!kv.GotoFirstSubKey())
 	{
 		SetFailState("[GetChannelWebHook] Can't find a channel in \"%s\"!", sFile);
+		delete kv;
 		return false;
 	}
 	
@@ -133,6 +134,7 @@ bool GetChannelWebHook(const char[] channel, char[] webhook, int length)
 		if(StrEqual(sChannel, channel, false))
 		{
 			kv.GetString("url", webhook, length);
+			delete kv;
 			return true;
 		}
 	}
